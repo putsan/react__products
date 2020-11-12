@@ -1,0 +1,44 @@
+@mixin text-owerflow($count) {
+  display: -webkit-box;
+  -webkit-line-clamp: #{$count};
+  -webkit-box-orient: vertical;
+
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+}
+
+$card-size: 258px;
+$image-size: 160px;
+$image-centered: ($card-size - $image-size) / 2;
+
+.product {
+  width: $card-size;
+
+  border: 1px solid #f3f3f3;
+  border-radius: 5px;
+
+  list-style: none;
+
+  &:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
+  }
+
+  &__image {
+    width: $image-size;
+    height: $image-size + 40;
+    margin: 25px $image-centered 0;
+  }
+
+  &__title {
+    @include text-owerflow(3);
+  }
+
+  &__paragraph {
+    @include text-owerflow(5);
+  }
+}
+
+.red {
+  background-color: red;;
+}
