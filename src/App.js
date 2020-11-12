@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import { getProducts } from './api/products';
+import { ProductsList } from './components/ProductsList';
 
- function App() {
-   return (
-     <div className="App">
-       <h1>Hello world!</h1>
-     </div>
-   );
- }
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.scss';
 
- export default App;
+function App() {
+  const [products, setProducts] = useState([]);
+
+  useMemo(() => (
+    getProducts(15)
+      .then(actualProducts => setProducts(actualProducts))
+  ), []);
+
+  return (
+    <div className="App">
+      <ProductsList products={products} />
+    </div>
+  );
+}
+
+export default App;
